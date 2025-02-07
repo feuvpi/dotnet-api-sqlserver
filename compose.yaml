@@ -1,0 +1,6 @@
+﻿services:
+  dotnet-api:
+    image: dotnet-api
+    build:
+      context: .
+      dockerfile: dotnet-api/Dockerfile
