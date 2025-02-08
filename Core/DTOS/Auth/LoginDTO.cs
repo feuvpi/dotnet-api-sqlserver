@@ -1,6 +1,5 @@
 namespace Core.DTOS.Auth;
 
-public class LoginDTO
-{
-    
-}
+public record LoginDto(
+    string Email,
+    string Password);

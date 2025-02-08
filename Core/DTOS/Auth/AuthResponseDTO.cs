@@ -1,6 +1,7 @@
 namespace Core.DTOS.Auth;
 
-public class AuthResponseDTO
-{
-    
-}
+
+public record AuthResponseDto(
+    string Token,
+    string Email,
+    string Username);

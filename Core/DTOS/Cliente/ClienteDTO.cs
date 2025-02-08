@@ -1,6 +1,7 @@
 namespace Core.DTOS.Cliente;
 
-public class ClienteDTO
-{
-    
-}
+public record ClienteDto(
+    int Id,
+    string Nome,
+    string Email,
+    DateTime DataCadastro);
