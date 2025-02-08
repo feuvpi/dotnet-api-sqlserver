@@ -1,7 +1,7 @@
 using Core.DTOS.Pedido;
 using FluentValidation;
 
-namespace dotnet_api.Validators;
+namespace Service.Validators;
 
 public class CreatePedidoValidator : AbstractValidator<CreatePedidoDto>
 {

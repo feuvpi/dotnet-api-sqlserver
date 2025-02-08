@@ -1,9 +1,11 @@
+
+
 using AutoMapper;
 using Core.DTOS.Cliente;
 using Core.DTOS.Pedido;
 using Core.Entities;
 
-namespace dotnet_api.Mappings;
+namespace Service.Mappings;
 
 public class MappingProfile : Profile
 {

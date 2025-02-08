@@ -1,7 +1,7 @@
 using Core.DTOS.Cliente;
 using FluentValidation;
 
-namespace dotnet_api.Validators;
+namespace Service.Validators;
 
 public class CreateClienteValidator : AbstractValidator<CreateClienteDto>
 {
