@@ -47,8 +47,8 @@ Esta estrutura facilita a manutenção, testabilidade e escalabilidade do projet
 
 ### 1. Clonando o Repositório 
 ```bash
-git clone [URL_DO_REPOSITORIO]
-cd [NOME_DO_PROJETO]
+git clone https://github.com/feuvpi/dotnet-api-sqlserver.git
+cd dotnet-api-sqlserver
 ```
 
 ### 2. Configurando o SQL Server com Docker
