@@ -42,9 +42,13 @@ public class PedidoService : IPedidoService
 
     public async Task<PedidoDto> CreateAsync(CreatePedidoDto createPedidoDto)
     {
+        
+        if(createPedidoDto.ValorTotal < 0)
+            throw new BusinessRuleException("O valor do pedido não pode ser negativo.");
+        
         if (!await _clienteRepository.ExistsAsync(createPedidoDto.ClienteId))
             throw new BusinessRuleException("Cliente não encontrado.");
-
+        
         var pedido = _mapper.Map<Pedido>(createPedidoDto);
         pedido.DataPedido = DateTime.UtcNow;
         
@@ -54,9 +58,13 @@ public class PedidoService : IPedidoService
 
     public async Task UpdateAsync(int id, UpdatePedidoDto updatePedidoDto)
     {
+        if(updatePedidoDto.ValorTotal < 0)
+            throw new BusinessRuleException("O valor total do pedido nõo pode ser negativo.");
         var pedido = await _repository.GetByIdAsync(id);
         if (pedido == null)
             throw new NotFoundException(nameof(Pedido), id);
+        
+        
 
         _mapper.Map(updatePedidoDto, pedido);
         await _repository.UpdateAsync(pedido);

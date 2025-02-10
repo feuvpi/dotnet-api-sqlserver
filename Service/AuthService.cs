@@ -11,11 +11,19 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Service;
 
+/// <summary>
+/// Handles authentication-related operations, including user registration, login, and JWT token generation.
+/// </summary>
 public class AuthService : IAuthService
 {
     private readonly IConfiguration _configuration;
     private readonly IUserRepository _userRepository;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AuthService"/> class.
+    /// </summary>
+    /// <param name="configuration">Configuration for accessing application settings (e.g., JWT secret key).</param>
+    /// <param name="userRepository">Repository for accessing user-related data.</param>
     public AuthService(
         IConfiguration configuration,
         IUserRepository userRepository)
@@ -24,6 +32,14 @@ public class AuthService : IAuthService
         _userRepository = userRepository;
     }
 
+    /// <summary>
+    /// Registers a new user with the provided details.
+    /// </summary>
+    /// <param name="registerDto">The user's registration details.</param>
+    /// <returns>
+    /// An <see cref="AuthResponseDto"/> containing the JWT token, email, and username of the newly registered user.
+    /// </returns>
+    /// <exception cref="BusinessRuleException">Thrown if the email is already registered.</exception>
     public async Task<AuthResponseDto> RegisterAsync(RegisterDto registerDto)
     {
         if (await _userRepository.EmailExistsAsync(registerDto.Email))
@@ -47,6 +63,14 @@ public class AuthService : IAuthService
             user.Username);
     }
 
+    /// <summary>
+    /// Authenticates a user with the provided credentials.
+    /// </summary>
+    /// <param name="loginDto">The user's login credentials.</param>
+    /// <returns>
+    /// An <see cref="AuthResponseDto"/> containing the JWT token, email, and username of the authenticated user.
+    /// </returns>
+    /// <exception cref="BusinessRuleException">Thrown if the email or password is invalid.</exception>
     public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
     {
         var user = await _userRepository.GetByEmailAsync(loginDto.Email);
@@ -65,6 +89,12 @@ public class AuthService : IAuthService
             user.Username);
     }
 
+    /// <summary>
+    /// Generates a JWT token for the specified user.
+    /// </summary>
+    /// <param name="user">The user for whom the token is generated.</param>
+    /// <returns>A JWT token as a string.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the JWT secret key is not configured.</exception>
     private string GenerateJwtToken(User user)
     {
         var claims = new List<Claim>
