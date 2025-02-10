@@ -10,7 +10,7 @@ public class PedidoConfiguration : IEntityTypeConfiguration<Pedido>
     {
         builder.Property(p => p.ValorTotal)
             .IsRequired()
-            .HasPrecision(18, 2);
+            .HasPrecision(10, 2);
             
         builder.Property(p => p.DataPedido)
             .IsRequired();
