@@ -75,7 +75,7 @@ cd dotnet-api-sqlserver
     "DefaultConnection": "Server=localhost;Database=dotnet-api-db;User Id=sa;Password=Sua_Senha_Forte!123;TrustServerCertificate=True"
     },
     "JWT": {
-    "SecretKey": "seu-jwt-token"
+    "SecretKey": "seu-jwt-secrey-key"
     }
 }
 ```
